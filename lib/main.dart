@@ -152,6 +152,7 @@ class MovieWidget extends StatelessWidget {
             ),
           ),
           Container(
+            padding: const EdgeInsets.all(10),
               width: 150,
               alignment: Alignment.center,
               child: Center(child: Text(movie.originalTitle ?? "No title"))),
