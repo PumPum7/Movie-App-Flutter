@@ -59,8 +59,10 @@ class _HomeState extends State<Home> {
                                 .size
                                 .width /
                                 (MediaQuery.of(context).size.height / 1.1),
-                            crossAxisCount: 2,
                             crossAxisSpacing: 5,
+                            crossAxisCount: MediaQuery.of(context)
+                                .size
+                                .width ~/ 200,
                             children: [
                               for (Movies movie
                               in snapshot.data?.results ?? [])
