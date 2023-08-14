@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../classes/movies.dart';
 import '../utils/fetch_movies.dart';
@@ -34,6 +35,7 @@ class _HomeState extends State<Home> {
         future: futureMovie,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            FlutterNativeSplash.remove();
             if (snapshot.data == null) {
               return const Center(
                 child: Text("No movies found!"),

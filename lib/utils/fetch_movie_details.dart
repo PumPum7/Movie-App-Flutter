@@ -15,10 +15,8 @@ Future<MovieDetailsResponse> fetchMovieDetails(num movie) async {
       headers: requestHeaders);
 
   if (response.statusCode == 200) {
-
-      return MovieDetailsResponse.fromJson(jsonDecode(response.body));
+    return MovieDetailsResponse.fromJson(jsonDecode(response.body));
   } else {
-
     throw Exception("Failed to load movie details!");
   }
 }
