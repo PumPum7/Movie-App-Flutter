@@ -6,7 +6,7 @@ import 'package:movie_app/routes/home.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future main() async {
-  await dotenv.load(fileName: "assets/config/.env");
+  await dotenv.load(fileName: "assets/config/.env", isOptional: true);
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   SystemChrome.setEnabledSystemUIMode(

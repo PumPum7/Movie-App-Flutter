@@ -8,7 +8,7 @@ import '../classes/movies.dart';
 Future<MoviesResponse> fetchMovies() async {
   Map<String, String> requestHeaders = {
     "Authorization":
-    "Bearer ${dotenv.get('API_READ_ACCESS')}",
+    "Bearer ${dotenv.get('API_READ_ACCESS', fallback: const String.fromEnvironment("API_READ_ACCESS"))}",
     "Accept": "application/json"
   };
   final response = await http.get(
