@@ -1,8 +1,11 @@
+import "package:extended_image/extended_image.dart";
 import "package:flutter/material.dart";
 import "package:movie_app/classes/movie_details.dart";
 import "package:movie_app/utils/fetch_movie_details.dart";
+import "package:movie_app/widgets/movie_display.dart";
 import "package:percent_indicator/circular_percent_indicator.dart";
 import "package:url_launcher/url_launcher.dart";
+import 'package:waterfall_flow/waterfall_flow.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final num movie;
@@ -46,102 +49,160 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               appBar: AppBar(
                 title: const Text("Movie Details"),
               ),
-              body: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: ShaderMask(
-                          shaderCallback: (rect) {
-                            return const LinearGradient(
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                              colors: [Colors.black, Colors.transparent],
-                            ).createShader(
-                                Rect.fromLTRB(0, 0, rect.width, rect.height));
-                          },
-                          blendMode: BlendMode.dstIn,
-                          child: Image(
-                              height: 200,
-                              fit: BoxFit.contain,
-                              image: NetworkImage(
-                                  "https://image.tmdb.org/t/p/w400/${movie.backdropPath}")),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 30),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Container(
-                            constraints:
-                                BoxConstraints.tight(const Size(100, 135)),
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: ShaderMask(
+                            shaderCallback: (rect) {
+                              return const LinearGradient(
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                                colors: [Colors.black, Colors.transparent],
+                              ).createShader(
+                                  Rect.fromLTRB(0, 0, rect.width, rect.height));
+                            },
+                            blendMode: BlendMode.dstIn,
                             child: Image(
-                                height: 100,
-                                width: 135,
-                                fit: BoxFit.fill,
+                                height: 200,
+                                fit: BoxFit.contain,
                                 image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/w200/${movie.posterPath}",
-                                    scale: 1)),
+                                    "https://image.tmdb.org/t/p/w400/${movie.backdropPath}")),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.center,
-                    child: Text(
-                      movie.title != null ? "${movie.title}" : "No title",
-                      style: const TextStyle(height: 1, fontSize: 20),
-                    ),
-                  ),
-                  Text(movie.releaseDate != null
-                      ? "(${movie.releaseDate?.split("-")[0]})"
-                      : "No known release date"),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (movie.voteAverage != null)
-                        Row(
-                          children: [
-                            CircularPercentIndicator(
-                              radius: 30,
-                              lineWidth: 10,
-                              animation: true,
-                              percent: movie.voteAverage! / 10,
-                              center: Text(movie.voteAverage != null
-                                  ? "${(movie.voteAverage! * 10).round()}%"
-                                  : ""),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 30),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Container(
+                              constraints:
+                                  BoxConstraints.tight(const Size(100, 135)),
+                              child: Image(
+                                  height: 100,
+                                  width: 135,
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                      "https://image.tmdb.org/t/p/w200/${movie.posterPath}",
+                                      scale: 1)),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text("User Score"),
-                            )
-                          ],
-                        ),
-                      const VerticalDivider(
-                        color: Colors.grey,
-                        width: 20,
-                        thickness: 1,
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      alignment: Alignment.center,
+                      child: Text(
+                        movie.title != null ? "${movie.title}" : "No title",
+                        style: const TextStyle(height: 1, fontSize: 20),
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () => openTrailer(
-                            "https://www.youtube.com/watch?v=${movie.videos?.results?.firstWhere((video) => video.type == 'Trailer').key}"),
-                        icon: const Icon(Icons.play_arrow),
-                        label: const Text("Play Trailer"),
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(
-                              Colors.transparent),
-                          foregroundColor:
-                              MaterialStatePropertyAll<Color>(Colors.black),
-                          shadowColor: MaterialStatePropertyAll<Color>(
-                              Colors.transparent),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+                    ),
+                    Text(movie.releaseDate != null
+                        ? "(${movie.releaseDate?.split("-")[0]})"
+                        : "No known release date"),
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (movie.voteAverage != null)
+                            Row(
+                              children: [
+                                CircularPercentIndicator(
+                                  progressColor: Colors.green,
+                                  radius: 25,
+                                  lineWidth: 8,
+                                  animation: true,
+                                  percent: movie.voteAverage! / 10,
+                                  center: Text(
+                                    movie.voteAverage != null
+                                        ? "${(movie.voteAverage! * 10).round()}%"
+                                        : "",
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
+                                ),
+                                const Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 4.0, right: 8.0),
+                                  child: Text("User Score"),
+                                )
+                              ],
+                            ),
+                          const VerticalDivider(
+                            color: Colors.grey,
+                            width: 10,
+                            thickness: 1.5,
+                            indent: 8,
+                            endIndent: 8,
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () => openTrailer(
+                                "https://www.youtube.com/watch?v=${movie.videos?.results?.firstWhere((video) => video.type == 'Trailer').key}"),
+                            icon: const Icon(Icons.play_arrow),
+                            label: const Text("Play Trailer"),
+                            style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                              foregroundColor:
+                                  MaterialStatePropertyAll<Color>(Colors.black),
+                              shadowColor: MaterialStatePropertyAll<Color>(
+                                  Colors.transparent),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Text(
+                          "Overview",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        )),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(movie.overview != null
+                          ? movie.overview as String
+                          : "No description available!"),
+                    ),
+                    Container(
+                        alignment: Alignment.centerLeft,
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Text(
+                          "Similar movies",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        )),
+                    CustomScrollView(
+                      primary: false,
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      slivers: <Widget>[
+                        SliverPadding(
+                          padding: const EdgeInsets.all(20),
+                          sliver: SliverGrid.count(
+                              childAspectRatio: MediaQuery.of(context)
+                                  .size
+                                  .width /
+                                  (MediaQuery.of(context).size.height / 1.1),
+                              crossAxisSpacing: 5,
+                              crossAxisCount: MediaQuery.of(context)
+                                  .size
+                                  .width ~/ 200,
+                              children: [
+                                for (SimilarResults movie
+                                in movie.similar?.results ?? [])
+                                  MovieWidget(movie: movie)
+                              ]),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ));
         } else if (snapshot.hasError) {
           return Center(child: Text("${snapshot.error}"));

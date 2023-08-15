@@ -41,8 +41,10 @@ dependencies:
   percent_indicator: ^4.0.1
   url_launcher: ^6.1.12
   flutter_launcher_icons: ^0.13.1
-  flex_color_scheme: ^7.2.0
   flutter_native_splash: ^2.3.2
+  waterfall_flow: ^3.0.2
+  extended_image: ^8.0.2
+  flutter_screenutil: ^5.8.4
 
 dev_dependencies:
   flutter_test:
