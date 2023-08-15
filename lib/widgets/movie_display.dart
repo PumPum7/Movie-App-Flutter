@@ -68,7 +68,6 @@ class MovieWidget extends StatelessWidget {
                     state.reLoadImage();
                   },
                 );
-                break;
             }
           })),
           Container(

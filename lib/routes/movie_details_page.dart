@@ -1,11 +1,10 @@
-import "package:extended_image/extended_image.dart";
 import "package:flutter/material.dart";
+import "package:flutter_spinkit/flutter_spinkit.dart";
 import "package:movie_app/classes/movie_details.dart";
 import "package:movie_app/utils/fetch_movie_details.dart";
 import "package:movie_app/widgets/movie_display.dart";
 import "package:percent_indicator/circular_percent_indicator.dart";
 import "package:url_launcher/url_launcher.dart";
-import 'package:waterfall_flow/waterfall_flow.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final num movie;
@@ -186,16 +185,15 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                           padding: const EdgeInsets.all(20),
                           sliver: SliverGrid.count(
                               childAspectRatio: MediaQuery.of(context)
-                                  .size
-                                  .width /
+                                      .size
+                                      .width /
                                   (MediaQuery.of(context).size.height / 1.1),
                               crossAxisSpacing: 5,
-                              crossAxisCount: MediaQuery.of(context)
-                                  .size
-                                  .width ~/ 200,
+                              crossAxisCount:
+                                  MediaQuery.of(context).size.width ~/ 200,
                               children: [
                                 for (SimilarResults movie
-                                in movie.similar?.results ?? [])
+                                    in movie.similar?.results ?? [])
                                   MovieWidget(movie: movie)
                               ]),
                         )
@@ -207,7 +205,31 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
         } else if (snapshot.hasError) {
           return Center(child: Text("${snapshot.error}"));
         }
-        return const CircularProgressIndicator();
+
+        return Container(
+          color: Colors.white,
+          width: 300.0,
+          height: 300.0,
+          child: const Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              SpinKitRotatingCircle(color: Colors.blueAccent, size: 50),
+              Positioned(
+                bottom: 50.0,
+                left: 0.0,
+                right: 0.0,
+                child: Text(
+                  "Loading Movie details...",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      decoration: TextDecoration.none,
+                      fontSize: 14),
+                ),
+              )
+            ],
+          ),
+        );
       },
     );
   }
