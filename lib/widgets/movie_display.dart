@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/routes/movie_details_page.dart';
+import 'package:go_router/go_router.dart';
 import "package:extended_image/extended_image.dart";
 
 class MovieWidget extends StatelessWidget {
@@ -14,10 +14,7 @@ class MovieWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MovieDetailsPage(movie: movie.id ?? 0))),
+      onTap: () => context.go("/movie/${movie.id.toString()}"),
       child: Column(
         children: [
           Expanded(
@@ -25,10 +22,10 @@ class MovieWidget extends StatelessWidget {
                   "https://image.tmdb.org/t/p/w300/${movie.posterPath}",
                   handleLoadingProgress: true,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  height: 300.h,
+                  height: 300.sh,
                   fit: BoxFit.fitHeight,
                   shape: BoxShape.rectangle,
-                  width: 200.w,
+                  width: 200.sw,
                   clearMemoryCacheIfFailed: true,
                   clearMemoryCacheWhenDispose: true,
                   cache: false, loadStateChanged: (ExtendedImageState state) {
@@ -72,7 +69,7 @@ class MovieWidget extends StatelessWidget {
           })),
           Container(
               padding: const EdgeInsets.all(10),
-              width: 200,
+              width: 200.sw,
               alignment: Alignment.center,
               child: Center(child: Text(movie.originalTitle ?? "No title"))),
         ],
