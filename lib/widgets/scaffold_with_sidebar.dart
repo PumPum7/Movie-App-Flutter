@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class ScaffoldWithSidebar extends StatelessWidget {
   /// Constructs an [ScaffoldWithSidebar].
@@ -16,20 +17,23 @@ class ScaffoldWithSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      bottomNavigationBar: SalomonBottomBar(
+        margin: EdgeInsets.fromLTRB( MediaQuery.of(context).size.width > 700 ? MediaQuery.of(context).size.width / 3 : 40, 5, MediaQuery.of(context).size.width > 700 ? MediaQuery.of(context).size.width / 3 : 40, 10),
+        items: [
+          SalomonBottomBarItem(
+              icon: const Icon(Icons.home),
+              title: const Text("Home"),
+              selectedColor: Colors.purple),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.favorite_border),
+            title: const Text("Likes"),
+            selectedColor: Colors.pink,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.person),
+            title: const Text("Profile"),
+            selectedColor: Colors.teal,
+          )
         ],
         currentIndex: _calculateSelectedIndex(context),
         onTap: (int idx) => _onItemTapped(idx, context),
