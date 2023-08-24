@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app_router.dart';
 import 'globals/app_state_provider.dart';
 
+// ignore: must_be_immutable
 class MyApp extends StatefulWidget {
   SharedPreferences prefs;
   MyApp({required this.prefs, Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => AppStateProvider()),
         ProxyProvider<AppStateProvider, AppRouter>(
             update: (context, appStateProvider, _) => AppRouter(
-                appStateProvider: appStateProvider, prefs: widget.prefs))
+                appStateProvider: appStateProvider, prefs: widget.prefs)),
       ],
       child: Builder(
         builder: ((context) {
@@ -48,8 +49,8 @@ class _MyAppState extends State<MyApp> {
                       displayColor: Colors.black,
                       bodyColor: Colors.black),
                   colorScheme:
-                  ColorScheme.fromSwatch(primarySwatch: Colors.grey)
-                      .copyWith(background: const Color(0xFFE5E5E5)),
+                      ColorScheme.fromSwatch(primarySwatch: Colors.grey)
+                          .copyWith(background: const Color(0xFFE5E5E5)),
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                 ),
                 darkTheme: ThemeData(
@@ -57,8 +58,8 @@ class _MyAppState extends State<MyApp> {
                   hintColor: Colors.white,
                   dividerColor: Colors.black12,
                   colorScheme:
-                  ColorScheme.fromSwatch(primarySwatch: Colors.grey)
-                      .copyWith(background: const Color(0xFF212121)),
+                      ColorScheme.fromSwatch(primarySwatch: Colors.grey)
+                          .copyWith(background: const Color(0xFF212121)),
                 ),
                 routeInformationParser: router.routeInformationParser,
                 routerDelegate: router.routerDelegate,

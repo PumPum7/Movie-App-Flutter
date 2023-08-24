@@ -2,14 +2,16 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
+import 'package:movie_faves/routes/create_account.dart';
 import 'globals/app_state_provider.dart';
-import 'routes/authentication.dart';
 import 'routes/favorites.dart';
 import 'routes/home.dart';
+import 'routes/login.dart';
 import 'routes/movie_details_page.dart';
 import 'routes/onboarding.dart';
 import 'routes/profile.dart';
@@ -17,6 +19,7 @@ import 'utils/router_utils.dart';
 import 'widgets/scaffold_with_sidebar.dart';
 
 class AppRouter {
+
   AppRouter({
     required this.appStateProvider,
     required this.prefs,
@@ -55,12 +58,16 @@ class AppRouter {
                 name: AppPage.profile.routeName,
                 path: AppPage.profile.routePath,
                 builder: (context, state) => const ProfilePage()),
-            GoRoute(
-                path: AppPage.auth.routePath,
-                name: AppPage.auth.routeName,
-                builder: (context, state) => const AuthenticationPage())
           ],
         ),
+        GoRoute(
+            path: AppPage.login.routePath,
+            name: AppPage.login.routeName,
+            builder: (context, state) => const LoginScreen()),
+        GoRoute(
+            path: AppPage.createAccount.routePath,
+            name: AppPage.createAccount.routeName,
+            builder: (context, state) => const CreateAccount()),
         GoRoute(
             path: AppPage.onboard.routePath,
             name: AppPage.onboard.routeName,
@@ -69,6 +76,9 @@ class AppRouter {
       redirect: (context, state) {
         final String onboardPath =
             state.namedLocation(AppPage.onboard.routeName);
+        final String createAccountPath =
+            state.namedLocation(AppPage.createAccount.routeName);
+        final String loginPath = state.namedLocation(AppPage.login.routeName);
 
         bool isOnboarding = state.matchedLocation == onboardPath;
 
@@ -77,6 +87,13 @@ class AppRouter {
         if (toOnboard) {
           return isOnboarding ? null : onboardPath;
         }
+
+        User? user = FirebaseAuth.instance.currentUser;
+
+        if (user == null && state.matchedLocation != loginPath ) {
+          return createAccountPath;
+        }
+
         return null;
       });
 }

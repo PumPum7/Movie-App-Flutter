@@ -23,7 +23,7 @@ void onSubmitDone(AppStateProvider stateProvider, BuildContext context) {
   // When user pressed skip/done button we'll finally set onboardCount integer
   stateProvider.hasOnboarded();
   // After that onboard state is done we'll go to homepage.
-  GoRouter.of(context).goNamed(AppPage.auth.routeName);
+  GoRouter.of(context).goNamed(AppPage.createAccount.routeName);
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {

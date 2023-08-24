@@ -213,8 +213,6 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
 
         return Container(
           color: Colors.white,
-          width: 300.0,
-          height: 300.0,
           child: const Stack(
             fit: StackFit.expand,
             children: <Widget>[

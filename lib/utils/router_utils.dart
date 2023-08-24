@@ -1,11 +1,12 @@
 // Create enum to represent different routes
 enum AppPage {
   onboard,
-  auth,
   home,
   movie,
   profile,
-  favorites
+  favorites,
+  login,
+  createAccount
 }
 
 
@@ -17,14 +18,16 @@ extension AppPageExtension on AppPage {
         return "/";
       case AppPage.onboard:
         return "/onboard";
-      case AppPage.auth:
-        return "/auth";
       case AppPage.movie:
         return "movie/:movieId";
       case AppPage.favorites:
         return "/favorites";
       case AppPage.profile:
         return "/profile";
+      case AppPage.login:
+        return "/login";
+      case AppPage.createAccount:
+        return "/createAccount";
 
       default:
         return "/";
@@ -37,14 +40,16 @@ extension AppPageExtension on AppPage {
         return "HOME";
       case AppPage.onboard:
         return "ONBOARD";
-      case AppPage.auth:
-        return "AUTH";
       case AppPage.movie:
         return "MOVIE";
       case AppPage.favorites:
         return "FAVORITES";
       case AppPage.profile:
         return "PROFILE";
+      case AppPage.login:
+        return "LOGIN";
+      case AppPage.createAccount:
+        return "CREATE_ACCOUNT";
 
       default:
         return "HOME";
