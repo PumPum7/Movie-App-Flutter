@@ -3,10 +3,12 @@ import "package:flutter/material.dart";
 
 // Package imports:
 import "package:flutter_spinkit/flutter_spinkit.dart";
+import "package:go_router/go_router.dart";
 import "package:percent_indicator/circular_percent_indicator.dart";
 import "package:url_launcher/url_launcher.dart";
 
 // Project imports:
+import "package:movie_faves/utils/router_utils.dart";
 import "../classes/movie_details.dart";
 import "../utils/fetch_movie_details.dart";
 import "../widgets/movie_display.dart";
@@ -51,11 +53,31 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
 
           return Scaffold(
               appBar: AppBar(
-                title: const Text("Movie Details"),
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                toolbarHeight: 10,
               ),
               body: SingleChildScrollView(
                 child: Column(
                   children: [
+                    Stack(children: [
+                      TextButton(
+                          onPressed: () {
+                            context.goNamed(AppPage.home.routeName);
+                          },
+                          child: const Icon(Icons.arrow_back_ios)),
+                      const Center(
+                          child: Padding(
+                              padding: EdgeInsets.only(bottom: 25),
+                              child: Text(
+                                'Movie Details',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.blueAccent,
+                                ),
+                              ))),
+                    ]),
                     Stack(
                       children: [
                         Container(

@@ -32,7 +32,7 @@ class AppRouter {
 
   late final _router = GoRouter(
       refreshListenable: appStateProvider,
-      initialLocation: AppPage.profile.routePath,
+      initialLocation: AppPage.home.routePath,
       routes: [
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {

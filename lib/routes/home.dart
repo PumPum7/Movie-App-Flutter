@@ -32,7 +32,9 @@ class _HomeState extends State<Home> {
     title: 'Movie App',
     home: Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        toolbarHeight: 10,
       ),
       resizeToAvoidBottomInset: false,
       body: FutureBuilder<MoviesResponse>(
@@ -49,6 +51,17 @@ class _HomeState extends State<Home> {
             return SingleChildScrollView(
               child: Column(
                 children: [
+                  const Center(
+                      child: Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            'Movies',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.blueAccent,
+                            ),
+                          ))),
                   Padding(
                       padding: const EdgeInsets.all(20),
                       child: Text(
