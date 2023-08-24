@@ -1,12 +1,16 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../utils/router_utils.dart';
+// Project imports:
 import '../globals/app_state_provider.dart';
+import '../utils/router_utils.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

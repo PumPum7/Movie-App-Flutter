@@ -52,9 +52,9 @@ dependencies:
   introduction_screen: ^3.1.11
   shared_preferences: ^2.2.0
   provider: ^6.0.5
-  rename: ^2.1.1
 
 dev_dependencies:
+  import_sorter: ^4.6.0
   flutter_test:
     sdk: flutter
 

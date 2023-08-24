@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+// Project imports:
 import '../classes/movies.dart';
 import '../utils/fetch_movies.dart';
 import '../widgets/movie_display.dart';

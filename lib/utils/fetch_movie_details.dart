@@ -1,8 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
+// Project imports:
 import '../classes/movie_details.dart';
 
 Future<MovieDetailsResponse> fetchMovieDetails(num movie) async {

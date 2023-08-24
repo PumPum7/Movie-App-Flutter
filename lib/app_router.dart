@@ -1,14 +1,18 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Project imports:
+import 'globals/app_state_provider.dart';
 import 'routes/authentication.dart';
 import 'routes/favorites.dart';
 import 'routes/home.dart';
 import 'routes/movie_details_page.dart';
-import 'routes/profile.dart';
-import 'globals/app_state_provider.dart';
 import 'routes/onboarding.dart';
+import 'routes/profile.dart';
 import 'utils/router_utils.dart';
 import 'widgets/scaffold_with_sidebar.dart';
 

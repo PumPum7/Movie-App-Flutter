@@ -376,6 +376,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.17"
+  import_sorter:
+    dependency: "direct dev"
+    description:
+      name: import_sorter
+      sha256: eb15738ccead84e62c31e0208ea4e3104415efcd4972b86906ca64a1187d0836
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.0"
   introduction_screen:
     dependency: "direct main"
     description:
@@ -408,14 +416,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      sha256: "7ad7215c15420a102ec687bb320a7312afd449bac63bfb1c60d9787c27b9767f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.0"
   logging:
     dependency: transitive
     description:
@@ -560,14 +560,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
-  rename:
-    dependency: "direct main"
-    description:
-      name: rename
-      sha256: b0d9407186d834ad73aba9938da95a20208c4be99f151d9f376ac62a08d08bad
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   salomon_bottom_bar:
     dependency: "direct main"
     description:
@@ -685,6 +677,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  tint:
+    dependency: transitive
+    description:
+      name: tint
+      sha256: "9652d9a589f4536d5e392cf790263d120474f15da3cf1bee7f1fdb31b4de5f46"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:

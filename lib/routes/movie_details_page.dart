@@ -1,8 +1,12 @@
+// Flutter imports:
 import "package:flutter/material.dart";
+
+// Package imports:
 import "package:flutter_spinkit/flutter_spinkit.dart";
 import "package:percent_indicator/circular_percent_indicator.dart";
 import "package:url_launcher/url_launcher.dart";
 
+// Project imports:
 import "../classes/movie_details.dart";
 import "../utils/fetch_movie_details.dart";
 import "../widgets/movie_display.dart";
