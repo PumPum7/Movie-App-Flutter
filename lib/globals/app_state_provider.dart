@@ -36,6 +36,7 @@ class AppStateProvider with ChangeNotifier {
         password: password,
       );
       await userCredential.user!.updateDisplayName(name);
+
       await userCredential.user?.reload();
       notifyListeners();
       return 'Success';

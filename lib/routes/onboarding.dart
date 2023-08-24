@@ -123,7 +123,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
               ElevatedButton(
                   onPressed: () => onSubmitDone(appStateProvider, context),
-                  child: const Text("Get started!")),
+                  child: const Text("Register now!")),
             ],
           ),
           decoration: pageDecoration,

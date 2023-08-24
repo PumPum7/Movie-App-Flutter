@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,15 +37,133 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
+
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Profile'),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          toolbarHeight: 10,
         ),
         body: FutureBuilder(
             future: _currentUser,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 User currentUser = snapshot.data;
+                return SafeArea(
+                    child: Column(
+                  children: [
+                    const Center(
+                        child: Padding(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: Text(
+                              'Profile',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.blueAccent,
+                              ),
+                            ))),
+                    InkWell(
+                        onTap: () {
+                          print("smth");
+                        },
+                        child: Container(
+                          height: 10.w * 10,
+                          width: 10.w * 10,
+                          margin: EdgeInsets.only(top: 10.w * 3),
+                          child: Stack(
+                            children: <Widget>[
+                              currentUser.photoURL == null
+                                  ? Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 2, color: Colors.black),
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      ),
+                                      child: Icon(
+                                        Icons.person,
+                                        size:
+                                            MediaQuery.of(context).size.height *
+                                                0.1,
+                                      ))
+                                  : const Text("placeholder"),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                  height: 10.w * 2.5,
+                                  width: 10.w * 2.5,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          width: 2, color: Colors.blueAccent)),
+                                  child: Center(
+                                    heightFactor: 10.w * 1.5,
+                                    widthFactor: 10.w * 1.5,
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Colors.blueAccent,
+                                      size: ScreenUtil().setSp(10.w * 1.5),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                    Center(
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${currentUser.displayName}",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(10.w * 1.7),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  "${currentUser.email}",
+                                  textAlign: TextAlign.start,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    _isSigningOut
+                        ? const CircularProgressIndicator()
+                        : ElevatedButton(
+                            onPressed: () async {
+                              setState(() {
+                                _isSigningOut = true;
+                              });
+                              await FirebaseAuth.instance.signOut();
+                              setState(() {
+                                _isSigningOut = false;
+                              });
+                              if (context.mounted) {
+                                context.goNamed(AppPage.login.routeName);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                            ),
+                            child: const Text('Sign out'),
+                          ),
+                  ],
+                ));
 
                 return Center(
                   child: Column(
@@ -51,28 +171,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Text(
                         'NAME: ${currentUser.displayName}',
-                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 16.0),
                       Text(
                         'EMAIL: ${currentUser.email}',
-                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: 16.0),
                       currentUser.emailVerified
-                          ? Text(
+                          ? const Text(
                               'Email verified',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(color: Colors.green),
                             )
-                          : Text(
+                          : const Text(
                               'Email not verified',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(color: Colors.red),
                             ),
                       const SizedBox(height: 16.0),
                       currentUser.emailVerified

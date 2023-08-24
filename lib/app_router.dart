@@ -32,7 +32,7 @@ class AppRouter {
 
   late final _router = GoRouter(
       refreshListenable: appStateProvider,
-      initialLocation: "/",
+      initialLocation: AppPage.profile.routePath,
       routes: [
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -90,7 +90,7 @@ class AppRouter {
 
         User? user = FirebaseAuth.instance.currentUser;
 
-        if (user == null && state.matchedLocation != loginPath ) {
+        if (user == null && state.matchedLocation != loginPath) {
           return createAccountPath;
         }
 
