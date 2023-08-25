@@ -4,6 +4,7 @@ enum AppPage {
   home,
   movie,
   profile,
+  profileEdit,
   favorites,
   login,
   createAccount
@@ -24,6 +25,8 @@ extension AppPageExtension on AppPage {
         return "/favorites";
       case AppPage.profile:
         return "/profile";
+      case AppPage.profileEdit:
+        return "/profile/edit";
       case AppPage.login:
         return "/login";
       case AppPage.createAccount:
@@ -46,6 +49,8 @@ extension AppPageExtension on AppPage {
         return "FAVORITES";
       case AppPage.profile:
         return "PROFILE";
+      case AppPage.profileEdit:
+        return "PROFILE_EDIT";
       case AppPage.login:
         return "LOGIN";
       case AppPage.createAccount:

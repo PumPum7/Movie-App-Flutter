@@ -30,7 +30,7 @@ class Validator {
 
   static String? validatePassword({required String? password}) {
     if (password == null) {
-      return null;
+      return 'Password can\'t be empty';
     }
 
     if (password.isEmpty) {

@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import 'package:movie_faves/routes/create_account.dart';
+import 'package:movie_faves/routes/profile_edit.dart';
 import 'globals/app_state_provider.dart';
 import 'routes/favorites.dart';
 import 'routes/home.dart';
@@ -32,7 +33,7 @@ class AppRouter {
 
   late final _router = GoRouter(
       refreshListenable: appStateProvider,
-      initialLocation: AppPage.home.routePath,
+      initialLocation: AppPage.profileEdit.routePath,
       routes: [
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -58,6 +59,10 @@ class AppRouter {
                 name: AppPage.profile.routeName,
                 path: AppPage.profile.routePath,
                 builder: (context, state) => const ProfilePage()),
+            GoRoute(
+                name: AppPage.profileEdit.routeName,
+                path: AppPage.profileEdit.routePath,
+                builder: (context, state) => const ProfileEditPage()),
           ],
         ),
         GoRoute(

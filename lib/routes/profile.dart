@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:extended_image/extended_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ))),
                     InkWell(
                         onTap: () {
-                          print("smth");
+                          context.goNamed(AppPage.profileEdit.routeName);
                         },
                         child: Container(
                           height: 10.w * 10,
@@ -80,15 +81,65 @@ class _ProfilePageState extends State<ProfilePage> {
                                         border: Border.all(
                                             width: 2, color: Colors.black),
                                         borderRadius:
-                                            BorderRadius.circular(100),
+                                            BorderRadius.circular(150),
                                       ),
-                                      child: Icon(
-                                        Icons.person,
-                                        size:
-                                            MediaQuery.of(context).size.height *
-                                                0.1,
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Icon(Icons.person, size: 100),
                                       ))
-                                  : const Text("placeholder"),
+                                  : ExtendedImage.network(
+                                      currentUser.photoURL ?? "",
+                                      handleLoadingProgress: true,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      height: 200.sh,
+                                      fit: BoxFit.fitHeight,
+                                      shape: BoxShape.circle,
+                                      width: 200.sw,
+                                      clearMemoryCacheIfFailed: true,
+                                      clearMemoryCacheWhenDispose: true,
+                                      cache: false, loadStateChanged:
+                                          (ExtendedImageState state) {
+                                      switch (state.extendedImageLoadState) {
+                                        case LoadState.loading:
+                                          return const Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: <Widget>[
+                                                CircularProgressIndicator(
+                                                  color: Colors.blueAccent,
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        case LoadState.completed:
+                                          return null;
+                                        case LoadState.failed:
+                                          return GestureDetector(
+                                            child: const Stack(
+                                              fit: StackFit.expand,
+                                              children: <Widget>[
+                                                Icon(Icons.error),
+                                                Positioned(
+                                                  bottom: 0.0,
+                                                  left: 0.0,
+                                                  right: 0.0,
+                                                  child: Text(
+                                                    "load image failed, click to reload",
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            onTap: () {
+                                              state.reLoadImage();
+                                            },
+                                          );
+                                      }
+                                    }),
                               Align(
                                 alignment: Alignment.bottomRight,
                                 child: Container(
