@@ -25,11 +25,13 @@ class PanelContent extends StatelessWidget {
           left: MediaQuery.of(context).size.width / 4,
           top: 5,
           child: Container(
-              width: MediaQuery.of(context).size.width / 2.5,
-              height: 3.0,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.shade400)),
+            width: MediaQuery.of(context).size.width / 2.5,
+            height: 3.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.grey.shade400,
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0, top: 16, right: 8.0),
@@ -57,7 +59,7 @@ class PanelContent extends StatelessWidget {
                             "https://image.tmdb.org/t/p/w300/${data?.results?[0].posterPath}",
                             handleLoadingProgress: true,
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                                const BorderRadius.all(Radius.circular(10)),
                             height: 125,
                             fit: BoxFit.fitHeight,
                             shape: BoxShape.rectangle,
@@ -65,44 +67,44 @@ class PanelContent extends StatelessWidget {
                             clearMemoryCacheWhenDispose: true,
                             cache: false,
                             loadStateChanged: (ExtendedImageState state) {
-                              switch (state.extendedImageLoadState) {
-                                case LoadState.loading:
-                                  return const Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        CircularProgressIndicator(
-                                          color: Colors.blueAccent,
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                case LoadState.completed:
-                                  return null;
-                                case LoadState.failed:
-                                  return GestureDetector(
-                                    child: const Stack(
-                                      fit: StackFit.expand,
-                                      children: <Widget>[
-                                        Icon(Icons.error),
-                                        Positioned(
-                                          bottom: 0.0,
-                                          left: 0.0,
-                                          right: 0.0,
-                                          child: Text(
-                                            "load image failed, click to reload",
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    onTap: () {
-                                      state.reLoadImage();
-                                    },
-                                  );
-                              }
-                            }),
+                          switch (state.extendedImageLoadState) {
+                            case LoadState.loading:
+                              return const Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    CircularProgressIndicator(
+                                      color: Colors.blueAccent,
+                                    )
+                                  ],
+                                ),
+                              );
+                            case LoadState.completed:
+                              return null;
+                            case LoadState.failed:
+                              return GestureDetector(
+                                child: const Stack(
+                                  fit: StackFit.expand,
+                                  children: <Widget>[
+                                    Icon(Icons.error),
+                                    Positioned(
+                                      bottom: 0.0,
+                                      left: 0.0,
+                                      right: 0.0,
+                                      child: Text(
+                                        "load image failed, click to reload",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                onTap: () {
+                                  state.reLoadImage();
+                                },
+                              );
+                          }
+                        }),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -140,10 +142,10 @@ class PanelContent extends StatelessWidget {
                                   StarRating(
                                     color: Colors.yellow,
                                     rating:
-                                    ((data?.results?[0].voteAverage ?? 0) /
-                                        2)
-                                        .clamp(0, 5)
-                                        .toDouble(),
+                                        ((data?.results?[0].voteAverage ?? 0) /
+                                                2)
+                                            .clamp(0, 5)
+                                            .toDouble(),
                                   ),
                                   const SizedBox(
                                     width: 8,
@@ -172,7 +174,7 @@ class PanelContent extends StatelessWidget {
                     const Text(
                       "Trending",
                       style:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
                         onPressed: () =>

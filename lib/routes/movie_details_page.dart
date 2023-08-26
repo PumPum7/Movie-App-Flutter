@@ -60,24 +60,103 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Stack(children: [
-                      TextButton(
-                          onPressed: () {
-                            context.goNamed(AppPage.home.routeName);
-                          },
-                          child: const Icon(Icons.arrow_back_ios)),
-                      const Center(
+                    Stack(
+                      children: [
+                        Positioned(
+                          left: 10,
+                          top: 10,
+                          child: InkWell(
+                              onTap: () {
+                                context.goNamed(AppPage.home.routeName);
+                              },
+                              child: const Icon(Icons.arrow_back_ios)),
+                        ),
+                        const Center(
                           child: Padding(
-                              padding: EdgeInsets.only(bottom: 25),
-                              child: Text(
-                                'Movie Details',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.blueAccent,
+                            padding: EdgeInsets.only(bottom: 25),
+                            child: Text(
+                              'Movie Details',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.blueAccent,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            right: 10,
+                            top: 10,
+                            child: InkWell(
+                              onTap: () => showModalBottomSheet(
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(32),
+                                      topRight: Radius.circular(32)),
                                 ),
-                              ))),
-                    ]),
+                                context: context,
+                                builder: (context) {
+                                  return Wrap(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Row(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(100.0),
+                                              child: Container(
+                                                constraints:
+                                                    BoxConstraints.tight(
+                                                        const Size(50, 50)),
+                                                child: Image(
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(
+                                                        "https://image.tmdb.org/t/p/w200/${movie.posterPath}",
+                                                        scale: 1)),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 16,
+                                            ),
+                                            Text(
+                                              '${movie.originalTitle}',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      const Divider(
+                                        color: Colors.grey,
+                                        thickness: 0.5,
+                                      ),
+                                      const ListTile(
+                                        leading: Icon(Icons.favorite),
+                                        title: Text('Mark as favorite'),
+                                      ),
+                                      const Divider(
+                                        color: Colors.grey,
+                                        thickness: 0.5,
+                                      ),
+                                      const ListTile(
+                                        leading: Icon(Icons.share),
+                                        title: Text('Share'),
+                                      ),
+                                      const Divider(
+                                        color: Colors.grey,
+                                        thickness: 0.5,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                              child: const Icon(Icons.more_vert),
+                            ))
+                      ],
+                    ),
                     Stack(
                       children: [
                         Container(
