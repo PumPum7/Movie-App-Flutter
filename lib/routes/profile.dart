@@ -10,8 +10,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import '../globals/app_state_provider.dart';
-import '../utils/router_utils.dart';
+import 'package:movie_faves/globals/app_state_provider.dart';
+import 'package:movie_faves/utils/router_utils.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

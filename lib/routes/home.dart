@@ -11,13 +11,13 @@ import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 // Project imports:
-import '../classes/trending_media.dart';
-import '../utils/fetch_trending.dart';
-import '../utils/router_utils.dart';
-import '../widgets/home/category_movie_list.dart';
-import '../widgets/home/search_field.dart';
-import '../widgets/star_rating.dart';
-import 'profile.dart';
+import 'package:movie_faves/classes/trending_media.dart';
+import 'package:movie_faves/routes/profile.dart';
+import 'package:movie_faves/utils/fetch_trending.dart';
+import 'package:movie_faves/utils/router_utils.dart';
+import 'package:movie_faves/widgets/home/category_movie_list.dart';
+import 'package:movie_faves/widgets/home/search_field.dart';
+import 'package:movie_faves/widgets/star_rating.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
