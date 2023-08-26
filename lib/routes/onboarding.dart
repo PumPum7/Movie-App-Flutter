@@ -9,8 +9,8 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 
 // Project imports:
-import '../globals/app_state_provider.dart';
-import '../utils/router_utils.dart';
+import 'package:movie_faves/globals/app_state_provider.dart';
+import 'package:movie_faves/utils/router_utils.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

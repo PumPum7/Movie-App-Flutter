@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import '../classes/trending_media.dart';
+import 'package:movie_faves/classes/trending_media.dart';
 
 Future<TrendingMedia> fetchTrending(String type) async {
   Map<String, String> requestHeaders = {

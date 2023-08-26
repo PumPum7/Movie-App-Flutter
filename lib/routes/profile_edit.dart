@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:extended_image/extended_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,8 +17,8 @@ import 'package:image_picker/image_picker.dart';
 // Project imports:
 import 'package:movie_faves/globals/app_state_provider.dart';
 import 'package:movie_faves/utils/router_utils.dart';
-import '../utils/upload_photo.dart';
-import '../utils/validator.dart';
+import 'package:movie_faves/utils/upload_photo.dart';
+import 'package:movie_faves/utils/validator.dart';
 
 class ProfileEditPage extends StatefulWidget {
   const ProfileEditPage({super.key});
@@ -53,8 +51,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
       }
     });
   }
@@ -65,8 +61,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
       }
     });
   }

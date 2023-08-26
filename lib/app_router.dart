@@ -7,18 +7,18 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
+import 'package:movie_faves/globals/app_state_provider.dart';
 import 'package:movie_faves/routes/create_account.dart';
+import 'package:movie_faves/routes/discover.dart';
+import 'package:movie_faves/routes/favorites.dart';
 import 'package:movie_faves/routes/home.dart';
+import 'package:movie_faves/routes/login.dart';
+import 'package:movie_faves/routes/movie_details_page.dart';
+import 'package:movie_faves/routes/onboarding.dart';
+import 'package:movie_faves/routes/profile.dart';
 import 'package:movie_faves/routes/profile_edit.dart';
-import 'globals/app_state_provider.dart';
-import 'routes/discover.dart';
-import 'routes/favorites.dart';
-import 'routes/login.dart';
-import 'routes/movie_details_page.dart';
-import 'routes/onboarding.dart';
-import 'routes/profile.dart';
-import 'utils/router_utils.dart';
-import 'widgets/navigation_bar_bottom.dart';
+import 'package:movie_faves/utils/router_utils.dart';
+import 'package:movie_faves/widgets/navigation_bar_bottom.dart';
 
 class AppRouter {
 

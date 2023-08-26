@@ -11,9 +11,9 @@ import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 // Project imports:
-import 'package:movie_faves/utils/router_utils.dart';
 import '../classes/trending_media.dart';
 import '../utils/fetch_trending.dart';
+import '../utils/router_utils.dart';
 import '../widgets/home/category_movie_list.dart';
 import '../widgets/home/search_field.dart';
 import '../widgets/star_rating.dart';
@@ -462,62 +462,63 @@ class GridMovieTile extends StatelessWidget {
       width: (MediaQuery.of(context).size.width - 70) / 3,
       child: InkWell(
         onTap: () => context.go('/$mediaType/$id'),
-        child: Stack(children: [
-          ExtendedImage.network("https://image.tmdb.org/t/p/w300/$image",
-              handleLoadingProgress: true,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              fit: BoxFit.fitHeight,
-              shape: BoxShape.rectangle,
-              clearMemoryCacheIfFailed: true,
-              clearMemoryCacheWhenDispose: true,
-              cache: false, loadStateChanged: (ExtendedImageState state) {
-            switch (state.extendedImageLoadState) {
-              case LoadState.loading:
-                return const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      CircularProgressIndicator(
-                        color: Colors.blueAccent,
-                      )
-                    ],
-                  ),
-                );
-              case LoadState.completed:
-                return null;
-              case LoadState.failed:
-                return GestureDetector(
-                  child: const Stack(
-                    fit: StackFit.expand,
-                    children: <Widget>[
-                      Icon(Icons.error),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Text(
-                          "load image failed, click to reload",
-                          textAlign: TextAlign.center,
-                        ),
-                      )
-                    ],
-                  ),
-                  onTap: () {
-                    state.reLoadImage();
-                  },
-                );
-            }
-          }),
-          Positioned(
-            left: 2,
-            bottom: 40,
-            child: Text(
-              '$name',
-              overflow: TextOverflow.ellipsis,
+        child: Stack(
+          children: [
+            ExtendedImage.network("https://image.tmdb.org/t/p/w300/$image",
+                handleLoadingProgress: true,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                fit: BoxFit.fitHeight,
+                shape: BoxShape.rectangle,
+                clearMemoryCacheIfFailed: true,
+                clearMemoryCacheWhenDispose: true,
+                cache: false, loadStateChanged: (ExtendedImageState state) {
+              switch (state.extendedImageLoadState) {
+                case LoadState.loading:
+                  return const Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(
+                          color: Colors.blueAccent,
+                        )
+                      ],
+                    ),
+                  );
+                case LoadState.completed:
+                  return null;
+                case LoadState.failed:
+                  return GestureDetector(
+                    child: const Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        Icon(Icons.error),
+                        Positioned(
+                          bottom: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          child: Text(
+                            "load image failed, click to reload",
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      ],
+                    ),
+                    onTap: () {
+                      state.reLoadImage();
+                    },
+                  );
+              }
+            }),
+            Positioned(
+              left: 2,
+              bottom: 40,
+              child: Text(
+                '$name',
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          Positioned(
+            Positioned(
               left: 2,
               bottom: 20,
               child: Row(
@@ -530,10 +531,19 @@ class GridMovieTile extends StatelessWidget {
                   const SizedBox(
                     width: 8,
                   ),
-                  SizedBox( width: 50,child: Text(ranking.toStringAsFixed(1), maxLines: 2, overflow: TextOverflow.ellipsis,)),
+                  SizedBox(
+                    width: 50,
+                    child: Text(
+                      ranking.toStringAsFixed(1),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ],
-              ))
-        ]),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -9,9 +9,9 @@ import "package:url_launcher/url_launcher.dart";
 
 // Project imports:
 import "package:movie_faves/utils/router_utils.dart";
-import "../classes/movie_details.dart";
-import "../utils/fetch_movie_details.dart";
-import "../widgets/movie_display.dart";
+import 'package:movie_faves/classes/movie_details.dart';
+import 'package:movie_faves/utils/fetch_movie_details.dart';
+import 'package:movie_faves/widgets/movie_display.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final num movie;

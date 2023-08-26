@@ -9,8 +9,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
-import 'app.dart';
-import 'firebase_options.dart';
+import 'package:movie_faves/app.dart';
+import 'package:movie_faves/firebase_options.dart';
 
 Future main() async {
   await dotenv.load(fileName: "assets/config/.env");

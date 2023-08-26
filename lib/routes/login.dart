@@ -6,9 +6,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
+import 'package:movie_faves/globals/app_state_provider.dart';
 import 'package:movie_faves/utils/router_utils.dart';
 import 'package:movie_faves/utils/validator.dart';
-import '../globals/app_state_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

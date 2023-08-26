@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 // Project imports:
-import '../classes/tv_on_the_air.dart';
+import 'package:movie_faves/classes/tv_on_the_air.dart';
 
 Future<TvOnTheAir> fetchTvOnTheAir() async {
   Map<String, String> requestHeaders = {

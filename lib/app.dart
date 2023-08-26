@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
-import 'app_router.dart';
-import 'globals/app_state_provider.dart';
+import 'package:movie_faves/app_router.dart';
+import 'package:movie_faves/globals/app_state_provider.dart';
 
 // ignore: must_be_immutable
 class MyApp extends StatefulWidget {

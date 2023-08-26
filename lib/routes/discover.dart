@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 // Project imports:
-import '../classes/movies.dart';
-import '../utils/fetch_movies.dart';
-import '../widgets/movie_display.dart';
+import 'package:movie_faves/classes/movies.dart';
+import 'package:movie_faves/utils/fetch_movies.dart';
+import 'package:movie_faves/widgets/movie_display.dart';
 
 class Discover extends StatefulWidget {
   const Discover({super.key});

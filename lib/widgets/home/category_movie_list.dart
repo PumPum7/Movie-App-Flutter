@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:movie_faves/classes/now_playing_movies.dart';
+import 'package:movie_faves/classes/tv_on_the_air.dart';
 import 'package:movie_faves/utils/fetch_now_playing_movies.dart';
 import 'package:movie_faves/utils/fetch_tv_on_the_air.dart';
 import 'package:movie_faves/widgets/movie_display.dart';
-import '../../classes/tv_on_the_air.dart';
 
 class SidewayMovieList extends StatefulWidget {
   const SidewayMovieList({super.key, required this.category});
