@@ -7,17 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class MovieWidget extends StatelessWidget {
-  const MovieWidget({
-    super.key,
-    required this.movie,
-  });
+  const MovieWidget({super.key, required this.movie, this.type});
 
   final dynamic movie;
+  final String? type;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.go("/movie/${movie.id.toString()}"),
+      onTap: () => context.go("/${type ?? "movie"}/${movie.id.toString()}"),
       child: Column(
         children: [
           Expanded(

@@ -8,16 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import 'package:movie_faves/routes/create_account.dart';
+import 'package:movie_faves/routes/home.dart';
 import 'package:movie_faves/routes/profile_edit.dart';
 import 'globals/app_state_provider.dart';
+import 'routes/discover.dart';
 import 'routes/favorites.dart';
-import 'routes/home.dart';
 import 'routes/login.dart';
 import 'routes/movie_details_page.dart';
 import 'routes/onboarding.dart';
 import 'routes/profile.dart';
 import 'utils/router_utils.dart';
-import 'widgets/scaffold_with_sidebar.dart';
+import 'widgets/navigation_bar_bottom.dart';
 
 class AppRouter {
 
@@ -33,17 +34,17 @@ class AppRouter {
 
   late final _router = GoRouter(
       refreshListenable: appStateProvider,
-      initialLocation: AppPage.profileEdit.routePath,
+      initialLocation: AppPage.home.routePath,
       routes: [
         ShellRoute(
           builder: (BuildContext context, GoRouterState state, Widget child) {
-            return ScaffoldWithSidebar(child: child);
+            return NavigationBarBottom(child: child);
           },
           routes: [
             GoRoute(
                 path: AppPage.home.routePath,
                 name: AppPage.home.routeName,
-                builder: (context, state) => const Home(title: "Movie App"),
+                builder: (context, state) => const Home(),
                 routes: [
                   GoRoute(
                       path: AppPage.movie.routePath,
@@ -51,6 +52,10 @@ class AppRouter {
                       builder: (context, state) => MovieDetailsPage(
                           movie: num.parse(state.pathParameters["movieId"]!)))
                 ]),
+            GoRoute(
+                name: AppPage.discover.routeName,
+                path: AppPage.discover.routePath,
+                builder: (context, state) => const Discover()),
             GoRoute(
                 name: AppPage.favorites.routeName,
                 path: AppPage.favorites.routePath,

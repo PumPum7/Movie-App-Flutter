@@ -2,6 +2,7 @@
 enum AppPage {
   onboard,
   home,
+  discover,
   movie,
   profile,
   profileEdit,
@@ -17,6 +18,8 @@ extension AppPageExtension on AppPage {
     switch (this) {
       case AppPage.home:
         return "/";
+      case AppPage.discover:
+        return "/discover";
       case AppPage.onboard:
         return "/onboard";
       case AppPage.movie:
@@ -41,6 +44,8 @@ extension AppPageExtension on AppPage {
     switch (this) {
       case AppPage.home:
         return "HOME";
+      case AppPage.discover:
+        return "DISCOVER";
       case AppPage.onboard:
         return "ONBOARD";
       case AppPage.movie:

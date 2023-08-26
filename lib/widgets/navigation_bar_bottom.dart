@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class ScaffoldWithSidebar extends StatelessWidget {
-  /// Constructs an [ScaffoldWithSidebar].
-  const ScaffoldWithSidebar({
+// Project imports:
+import 'package:movie_faves/utils/router_utils.dart';
+
+class NavigationBarBottom extends StatelessWidget {
+  /// Constructs an [NavigationBarBottom].
+  const NavigationBarBottom({
     required this.child,
     super.key,
   });
@@ -28,14 +31,18 @@ class ScaffoldWithSidebar extends StatelessWidget {
               title: const Text("Home"),
               selectedColor: Colors.purple),
           SalomonBottomBarItem(
+              icon: const Icon(Icons.movie),
+              title: const Text("Discover"),
+              selectedColor: Colors.purple),
+          SalomonBottomBarItem(
             icon: const Icon(Icons.favorite_border),
             title: const Text("Likes"),
-            selectedColor: Colors.pink,
+            selectedColor: Colors.purple,
           ),
           SalomonBottomBarItem(
             icon: const Icon(Icons.person),
             title: const Text("Profile"),
-            selectedColor: Colors.teal,
+            selectedColor: Colors.purple,
           )
         ],
         currentIndex: _calculateSelectedIndex(context),
@@ -49,11 +56,14 @@ class ScaffoldWithSidebar extends StatelessWidget {
     if (location.startsWith('/movie')) {
       return 0;
     }
-    if (location.startsWith('/favorites')) {
+    if (location.startsWith('/discover')) {
       return 1;
     }
-    if (location.startsWith('/profile')) {
+    if (location.startsWith('/favorites')) {
       return 2;
+    }
+    if (location.startsWith('/profile')) {
+      return 3;
     }
     return 0;
   }
@@ -61,13 +71,16 @@ class ScaffoldWithSidebar extends StatelessWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/');
+        context.goNamed(AppPage.home.routeName);
         break;
       case 1:
-        GoRouter.of(context).go('/favorites');
+        context.goNamed(AppPage.discover.routeName);
         break;
       case 2:
-        GoRouter.of(context).go('/profile');
+        context.goNamed(AppPage.favorites.routeName);
+        break;
+      case 3:
+        context.goNamed(AppPage.profile.routeName);
         break;
     }
   }

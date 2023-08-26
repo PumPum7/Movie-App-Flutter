@@ -23,7 +23,7 @@ MovieFaves is a Flutter-based movie app that allows users to discover, curate, a
    git clone https://github.com/PumPum7/Movie-App-Flutter.git
    cd Movie-App-Flutter
    ```
-   
+
 2. Install dependencies:
   ```bash
   flutter pub get
@@ -33,7 +33,7 @@ MovieFaves is a Flutter-based movie app that allows users to discover, curate, a
   - Create a Firebase project at Firebase Console.
   - Enable Authentication, Cloud Firestore, and Cloud Storage services.
   - Follow this [guide](https://firebase.google.com/docs/flutter/setup)
-    
+
 4. Run the App
   ```bash
   flutter run
@@ -41,7 +41,12 @@ MovieFaves is a Flutter-based movie app that allows users to discover, curate, a
 
 ## Screenshots
 
-_todo: add screenshots_
+1. Homepage
+<p float="left">
+  <img src="screenshots/ios_homepage.png" width="100"  alt="Homepage"/>
+  <img src="screenshots/ios_discover.png" width="100"  alt="Discover"/>
+  <img src="screenshots/ios_movie_details.png" width="100" alt="Movie details" />
+</p>
 
 
 ## Contributing
@@ -50,4 +55,3 @@ Contributions are welcome! If you find a bug or want to add a new feature, feel 
 ----
 
 Happy movie curating with MovieFaves! 🍿🎉
-
